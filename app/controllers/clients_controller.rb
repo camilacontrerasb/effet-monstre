@@ -4,10 +4,13 @@ class ClientsController < ApplicationController
   def index
     if params[:query].present?
       @query = params[:query]
-      @clients = Client.where("name LIKE ?", "%#{params[:query]}%")
+      @clients = Client.where("first_name LIKE ?", "%#{params[:query]}%")
     else
       @clients = Client.all
     end
+  end
+
+  def show
   end
 
   def new
@@ -17,24 +20,18 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     if @client.save
-      redirect_to clients_path
+      redirect_to client_path(@client)
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
   end
 
   def edit
   end
 
   def update
-    if @client.update(client_params)
-      redirect_to client_path(@client)
-    else
-      render :new, status: :unprocessable_entity
-    end
+    @client.update(client_params)
+    redirect_to client_path(@client)
   end
 
   def destroy
@@ -44,11 +41,11 @@ class ClientsController < ApplicationController
 
   private
 
-  def client_params
-    params.require(:client).permit(:first_name, :last_name, :email)
-  end
-
   def set_client
     @client = Client.find(params[:id])
+  end
+
+  def client_params
+    params.require(:client).permit(:first_name, :last_name, :email)
   end
 end

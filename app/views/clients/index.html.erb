@@ -9,7 +9,7 @@
       <% @clients.each do |client| %>
         <div class="col-md-4">
           <div class="card">
-            <h1 class="card-title"><%= client.first_name %> <%= client.last_name %></h1>
+            <h1 class="card-title ml-3"><%= client.first_name %> <%= client.last_name %></h1>
             <%= link_to "See Details", client_path(client), class: "ms-3" %>
             <%= link_to "Edit", edit_client_path(client), class: "ms-3 text-warning" %>
             <%= link_to "Delete", client_path(client), class: "ms-3 text-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>

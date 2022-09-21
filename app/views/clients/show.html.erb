@@ -1,12 +1,11 @@
-<div style="background-image: url('https://www.effetmonstre.com/app/uploads/2020/01/effet-monstre-logo.png')"></div>
-
-<div class="container margin-top-negative">
+<div class="container py-5">
   <div class="row">
     <div class="col-8">
       <div class="client-show-card">
         <h1><%= @client.first_name %> <%= @client.last_name %></h1>
         <p class="client-show-email"><%= @client.email %></p>
       </div>
+      <%= link_to "Go Back to Clients", root_path %>
     </div>
   </div>
 </div>
